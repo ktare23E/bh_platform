@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Requirements;
+use App\Models\BoardingHouses;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('requirement_submissions', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
-            $table->foreignIdFor(Requirements::class)->constrained()->onDelete('cascade');
-            $table->timestamp('submitted_at')->nullable();
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->string('file_path');
+            $table->foreignIdFor(BoardingHouses::class)->constrained()->onDelete('cascade');
+            $table->unsignedTinyInteger('rating');
+            $table->text('comment')->nullable();
+            $table->date('date_review');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('requirement_submissions');
+        Schema::dropIfExists('reviews');
     }
 };

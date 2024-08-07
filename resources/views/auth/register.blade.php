@@ -3,7 +3,7 @@
         <div
             class="max-w-sm w-full rounded-lg shadow-lg bg-white p-6 space-y-6 border border-gray-200 dark:border-gray-700">
             <div class="space-y-2 text-center">
-                <h1 class="text-3xl font-bold">Login</h1>
+                <h1 class="text-3xl font-bold">Register</h1>
             </div>
             <div class="space-y-4">
                 <div class="space-y-2">
@@ -23,7 +23,7 @@
                         type="password" id="password" placeholder="******" required="" />
                 </div>
                 <div class="w-full">
-                    <button class="w-full py-1 px-2 bg-[#E61E50] text-white text-md rounded-sm">Login</button>
+                    <button class="w-full py-1 px-2 bg-[#E61E50] text-white text-md rounded-sm">Register</button>
                 </div>
             </div>
         </div>

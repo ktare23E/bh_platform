@@ -28,7 +28,13 @@
                                 <td>{{$requirement->name}}</td>
                                 <td>{{$requirement->description}}</td>
                                 <td class="capitalize">{{$requirement->status}}</td>
-                                <td><a href="" class="py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm">view</a></td>
+                                <td>
+                                    <button  class="open-edit-modal py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm" 
+                                    data-name="{{$requirement->name}}"
+                                    data-description="{{$requirement->description}}"
+                                    data-status="{{$requirement->status}}"
+                                    data-id="{{$requirement->id}}">edit</button>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

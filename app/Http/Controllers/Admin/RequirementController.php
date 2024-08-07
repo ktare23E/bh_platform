@@ -32,4 +32,21 @@ class RequirementController extends Controller
 
         return response()->json(['message' => 'success']);
     }
+
+    public function update (Request $request){
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'status' => 'required'
+        ]);
+
+        $requirement = Requirements::findOrFail($request->id);
+        $requirement->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'status' => $request->status
+        ]);
+
+        return response()->json(['message' => 'success']);
+    }
 }

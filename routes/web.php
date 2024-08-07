@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function(){
 
         Route::get('/requirements',[RequirementController::class,'index'])->name('requirements');
         Route::post('/store_requirement',[RequirementController::class,'store'])->name('store_requirement');
+        Route::post('/update_requirement',[RequirementController::class,'update'])->name('update_requirement');
 
 
         Route::get('/boarding_house',[BoardingHouseController::class,'index'])->name('boarding_house');

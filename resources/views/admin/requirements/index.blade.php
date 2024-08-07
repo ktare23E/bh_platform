@@ -91,5 +91,40 @@
                 }
             });
         });
+
+        $('#update_requirement').click(() => {
+            let name = $('#edit_name').val();
+            let description = $('#edit_description').val();
+            let status = $('#edit_status').val();
+            let id = $('#edit_id').val();
+
+            $.ajax({
+                url: "{{ route('update_requirement') }}",
+                type : "POST",
+                data : {
+                    name : name,
+                    description : description,
+                    status : status,
+                    id : id,
+                    _token : "{{ csrf_token() }}"
+                },
+                success : (response) => {
+                    if (response.message == 'success') {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Updated Requirement",
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
+                        }).then(function(){
+                            location.reload();
+                        });
+                    }
+                }
+            });
+        });
     </script>
 </x-layout>

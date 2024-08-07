@@ -1,4 +1,6 @@
 import './bootstrap';
-import {dataTable} from './modules/test.js';
+import {dataTable,modal} from './modules/test.js';
 
 dataTable();
+modal();
+

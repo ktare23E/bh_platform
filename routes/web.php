@@ -31,8 +31,15 @@ Route::post('login_store',[LoginController::class,'login'])->name('login_store')
 Route::middleware(['auth'])->group(function(){
     Route::middleware(['checkUserType:admin'])->group(function(){
         Route::get('/admin_dashboard',[AdminDashboardController::class,'index'])->name('admin_dashboard');
+
+
         Route::get('/users',[UserController::class,'index'])->name('users');
+
+
         Route::get('/requirements',[RequirementController::class,'index'])->name('requirements');
+        Route::post('/store_requirement',[RequirementController::class,'store'])->name('store_requirement');
+
+
         Route::get('/boarding_house',[BoardingHouseController::class,'index'])->name('boarding_house');
     });
     

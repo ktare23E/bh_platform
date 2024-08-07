@@ -1,5 +1,5 @@
 <aside
-            class="bg-gradient-to-br h-full from-[#FF6581] to-gray-900 -translate-x-80 fixed inset-0 z-50 ml-4  w-72 rounded-xl transition-transform duration-300 xl:translate-x-0">
+            class="bg-gradient-to-br h-full from-[#FF6581] to-gray-900 -translate-x-80 fixed inset-0 z-50  w-72 transition-transform duration-300 xl:translate-x-0">
             <div class="relative border-b border-white/20">
                 <a class="flex items-center gap-4 py-6 px-8" href="#/">
                     <h6

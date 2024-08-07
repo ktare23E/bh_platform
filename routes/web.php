@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\BoardingHouseController;
+use App\Http\Controllers\Admin\RequirementController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,17 +20,10 @@ Route::get('/register', function () {
 });
 
 
-Route::get('/requirements', function () {
-    return view('admin.requirements.index');
-})->name('requirements');
 
-Route::get('/users', function () {
-    return view('admin.users');
-})->name('users');
 
-Route::get('/boarding_house', function () {
-    return view('admin.boarding_house');
-})->name('boarding_house');
+
+Route::post('/logout',[LoginController::class,'logout'])->name('logout');
 
 
 Route::post('login_store',[LoginController::class,'login'])->name('login_store');
@@ -35,8 +31,9 @@ Route::post('login_store',[LoginController::class,'login'])->name('login_store')
 Route::middleware(['auth'])->group(function(){
     Route::middleware(['checkUserType:admin'])->group(function(){
         Route::get('/admin_dashboard',[AdminDashboardController::class,'index'])->name('admin_dashboard');
-
-
+        Route::get('/users',[UserController::class,'index'])->name('users');
+        Route::get('/requirements',[RequirementController::class,'index'])->name('requirements');
+        Route::get('/boarding_house',[BoardingHouseController::class,'index'])->name('boarding_house');
     });
     
 });

@@ -29,4 +29,15 @@ class LoginController extends Controller
             }
         }
     }
+
+    public function logout(Request $request){
+        Auth::logout();
+
+        // Optionally invalidate the session and regenerate the token to prevent CSRF attacks
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login'); // or wherever you want to redirect after logout
+
+    }
 }

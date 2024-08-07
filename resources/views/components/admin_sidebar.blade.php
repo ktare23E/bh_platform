@@ -67,7 +67,7 @@
                             </svg>
                             <p
                                 class="block antialiased  text-base leading-relaxed text-inherit font-medium capitalize">
-                                borading house
+                                boarding house
                             </p>
                         </x-nav-link>
                     </li>

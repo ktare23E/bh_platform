@@ -24,8 +24,11 @@
                             class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             type="password" id="password" name="password" placeholder="******" required="" />
                     </div>
+                    <div>
+                        <a href="{{route('register')}}" class="text-sm text-blue-700 hover:underline">Register an account</a>
+                    </div>
                     <div class="w-full">
-                        <button class="w-full py-1 px-2 bg-[#E61E50] text-white text-md rounded-sm" type="submit">Login</button>
+                        <button class="w-full py-1 px-2 bg-[#E61E50] text-white text-md rounded-sm " type="submit">Login</button>
                     </div>
                 </div>
             </form>

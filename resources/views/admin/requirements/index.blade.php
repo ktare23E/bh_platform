@@ -16,19 +16,21 @@
                 <table id="myTable" class="display">
                     <thead>
                         <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
+                            <th>Requirement</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Row 1 Data 1</td>
-                            <td>Row 1 Data 2</td>
-                        </tr>
-                        <tr>
-                            <td>Row 2 Data 1</td>
-                            <td>Row 2 Data 2</td>
-                        </tr>
+                        @foreach ($requirements as $requirement)
+                            <tr>
+                                <td>{{$requirement->name}}</td>
+                                <td>{{$requirement->description}}</td>
+                                <td>{{$requirement->status}}</td>
+                                <td><a href="" class="py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm">view</a></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -37,22 +39,21 @@
                 <table id="myTable2" class="display">
                     <thead>
                         <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
+                            <th>Requirement</th>
+                            <th>Description</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Row 1 Data 1</td>
-                            <td>Row 1 Data 2</td>
-                            <td><a href="">view</a></td>
-                        </tr>
-                        <tr>
-                            <td>Row 2 Data 1</td>
-                            <td>Row 2 Data 2</td>
-                            <td><a href="" class="py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm">view</a></td>
-                        </tr>
+                        @foreach ($requirements as $requirement)
+                            <tr>
+                                <td>{{$requirement->name}}</td>
+                                <td>{{$requirement->description}}</td>
+                                <td>{{$requirement->status}}</td>
+                                <td><a href="" class="py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm">view</a></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

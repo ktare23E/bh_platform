@@ -5,12 +5,13 @@
         <div class="p-4 xl:ml-80">
             <h1 class="text-2xl font-bold">Boarding House List</h1>
             
-            <div class="mt-4 bg-white w-full p-[2rem] rounded-sm shadow-2xl transition-all">
+            <div class="mt-24 bg-white w-full p-[2rem] rounded-sm shadow-2xl transition-all">
                 <table id="myTable" class="display">
                     <thead>
                         <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
+                            <th>Requirement</th>
+                            <th>Description</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -18,6 +19,7 @@
                         <tr>
                             <td>Row 1 Data 1</td>
                             <td>Row 1 Data 2</td>
+                            <td></td>
                             <td><a href="" class="py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm">view</a></td>
 
                         </tr>

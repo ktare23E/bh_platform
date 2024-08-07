@@ -1,7 +1,7 @@
 import './bootstrap';
-// import {test} from './modules/test.js';
+import {test} from './modules/test.js';
 
-// test();
+test();
 // test2();
 
 // function test2(){

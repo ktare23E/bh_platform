@@ -3,7 +3,7 @@
     <div class="min-h-screen">
         @include('components.admin_sidebar')
         <div class="p-4 xl:ml-80">
-            <h1 class="text-2xl font-bold">Requirement List</h1>
+            <h1 class="text-2xl font-bold mt-12">Requirement List</h1>
             <div class="action_buttons mt-12 w-full flex justify-end">
                 <button id="open-modal" class="py-1 px-2 text-md bg-[#E61E50] text-white rounded-sm flex gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">

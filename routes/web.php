@@ -20,6 +20,11 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
+Route::get('/map', function () {
+    return view('map');
+})->name('map');
+
+
 Route::post('/register_store',[LoginController::class,'registerStore'])->name('register_store');
 
 

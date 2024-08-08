@@ -11,10 +11,12 @@ class BoardingHouseController extends Controller
 {
     //
     public function index(){
-        $boarding_houses = BoardingHouse::with('user')->get();
+        $pending_boarding_houses = BoardingHouse::with('user')->where('status','inactive')->get();
+        $active_boarding_houses = BoardingHouse::with('user')->where('status','active')->get();
 
         return view('admin.boarding_house.index',[
-            'boarding_houses' => $boarding_houses
+            'pending_boarding_houses' => $pending_boarding_houses,
+            'active_boarding_houses' => $active_boarding_houses
         ]);
     }
 

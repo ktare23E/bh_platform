@@ -39,4 +39,14 @@ class BoardingHouseController extends Controller
             'message' => 'success'
         ]);
     }
+
+    public function rejectRequirementSubmission(Request $request){
+        $requirement_submission = RequirementSubmission::findOrFail($request->requirement_submission_id);
+        $requirement_submission->status = 'rejected';
+        $requirement_submission->save();
+
+        return response()->json([
+            'message' => 'success'
+        ]);
+    }
 }

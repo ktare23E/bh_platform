@@ -13,9 +13,9 @@
             <button type="button" id="close-edit-modal"
                 class="mr-2 px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400">Cancel</button>
             <button type="button" id="approve"
-                class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-blue-600">Approve</button>
+                class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700">Approve</button>
             <button type="button" id="reject"
-                class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-blue-600">Reject</button>
+                class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700">Reject</button>
         </div>
     </div>
 </div>

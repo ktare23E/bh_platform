@@ -134,7 +134,7 @@
                     if(response.message === 'success'){
                         Swal.fire({
                             title: "Success!",
-                            text: "Sucessfully Created Requirement",
+                            text: "Sucessfully Approved Requirement",
                             icon: "success",
                             confirmButtonText: 'OK',
                             buttonsStyling: false,
@@ -162,7 +162,7 @@
                 success : (response) => {
                     Swal.fire({
                         title: "Success!",
-                        text: "Sucessfully Created Requirement",
+                        text: "Sucessfully Rejected Requirement",
                         icon: "success",
                         confirmButtonText: 'OK',
                         buttonsStyling: false,

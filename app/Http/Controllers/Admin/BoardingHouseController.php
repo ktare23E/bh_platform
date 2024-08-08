@@ -21,8 +21,9 @@ class BoardingHouseController extends Controller
     }
 
     public function view(BoardingHouse $boarding_house){
-        $requirement_submissions = RequirementSubmission::where('boarding_house_id',$boarding_house->id)->get();
-        return view('admin.view_boarding_house.view',[
+        $requirement_submissions = RequirementSubmission::with('requirement')->where('boarding_house_id',$boarding_house->id)->get();
+
+        return view('admin.boarding_house.view',[
             'boarding_house' => $boarding_house,
             'requirement_submissions' => $requirement_submissions
         ]);

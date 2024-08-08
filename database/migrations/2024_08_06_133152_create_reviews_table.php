@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\BoardingHouses;
+use App\Models\BoardingHouse;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
-            $table->foreignIdFor(BoardingHouses::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(BoardingHouse::class)->constrained()->onDelete('cascade');
             $table->unsignedTinyInteger('rating');
             $table->text('comment')->nullable();
             $table->date('date_review');

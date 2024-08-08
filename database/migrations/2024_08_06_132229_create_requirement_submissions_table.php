@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\BoardingHouses;
-use App\Models\Requirements;
+use App\Models\BoardingHouse;
+use App\Models\Requirement;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,8 +16,8 @@ return new class extends Migration
     {
         Schema::create('requirement_submissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(BoardingHouses::class)->constrained()->onDelete('cascade');
-            $table->foreignIdFor(Requirements::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(BoardingHouse::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Requirement::class)->constrained()->onDelete('cascade');
             $table->timestamp('submitted_at')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->string('file_path');

@@ -9,7 +9,7 @@
                 <table id="myTable" class="display">
                     <thead>
                         <tr>
-                            <th>Requirement</th>
+                            <th>Owner</th>
                             <th>Description</th>
                             <th>Status</th>
                             <th>Actions</th>

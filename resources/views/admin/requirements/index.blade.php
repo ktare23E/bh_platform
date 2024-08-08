@@ -39,23 +39,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-            <h1 class="text-2xl font-bold mt-24">Requirement Submission List</h1>
-            <div class="mt-4 bg-white w-full p-[2rem] rounded-sm shadow-2xl transition-all">
-                <table id="myTable2" class="display">
-                    <thead>
-                        <tr>
-                            <th>Requirement</th>
-                            <th>Description</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-                </table>
-            </div>
+            </div>            
         </div>
     </div>
     @include('components.modals.requirements_modal')

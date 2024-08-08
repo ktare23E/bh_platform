@@ -29,4 +29,14 @@ class BoardingHouseController extends Controller
         ]);
 
     }
+
+    public function approveRequirementSubmission(Request $request){
+        $requirement_submission = RequirementSubmission::findOrFail($request->requirement_submission_id);
+        $requirement_submission->status = 'approved';
+        $requirement_submission->save();
+
+        return response()->json([
+            'message' => 'success'
+        ]);
+    }
 }

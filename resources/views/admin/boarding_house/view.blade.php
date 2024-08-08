@@ -74,7 +74,8 @@
                                 <td>
                                     <button  class="open-edit-modal py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm"
                                         data-requirment="{{$requirement_submission->requirement->name}}"
-                                        data-file="{{$requirement_submission->file_path}}">view</button>
+                                        data-file="{{$requirement_submission->file_path}}"
+                                        data-id="{{$requirement_submission->id}}">view</button>
                                 </td>                            
                             </tr>
                         @endforeach
@@ -101,10 +102,13 @@
 
                     let requirement = button.getAttribute('data-requirment');
                     let file = button.getAttribute('data-file');
+                    let requirement_submission_id = button.getAttribute('data-id');
+
                     let filePath = "{{asset('storage')}}/"+file;
                     
                     $('.requirement-name').html(requirement);
                     $('.requirement_image').attr('src', filePath);
+                    $('#requirement_submission_id').val(requirement_submission_id);
                 })
             });
 
@@ -115,5 +119,61 @@
                 modalContent.classList.remove('scale-100');
             });
         });
+
+        $('#approve').click(() => {
+            let requirement_submission_id = $('#requirement_submission_id').val();
+
+            $.ajax({
+                url: "{{route('approve_requirement_submission')}}",
+                method: 'POST',
+                data: {
+                    requirement_submission_id: requirement_submission_id,
+                    _token: "{{csrf_token()}}"
+                },
+                success: (response) => {
+                    if(response.message === 'success'){
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Created Requirement",
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
+                        }).then(function(){
+                            location.reload();
+                        });
+                    }
+                }
+            });
+        });
+
+        $('#reject').click(() => {
+            let requirement_submission_id = $('#requirement_submission_id').val();
+
+            $.ajax({
+                url : "{{route('reject_requirement_submission')}}",
+                type : "POST",
+                data : {
+                    requirement_submission_id : requirement_submission_id,
+                    _token : "{{csrf_token()}}"
+                },
+                success : (response) => {
+                    Swal.fire({
+                        title: "Success!",
+                        text: "Sucessfully Created Requirement",
+                        icon: "success",
+                        confirmButtonText: 'OK',
+                        buttonsStyling: false,
+                        customClass: {
+                            confirmButton: 'custom-confirm-button'
+                        }
+                    }).then(function(){
+                        location.reload();
+                    });
+                }
+            });
+        })
     </script>
 </x-layout>

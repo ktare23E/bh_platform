@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\BoardingHouseController;
 use App\Http\Controllers\Admin\RequirementController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Landlord\LandlordDashboard;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
+Route::post('/register_store',[LoginController::class,'registerStore'])->name('register_store');
 
 
 
@@ -42,6 +44,12 @@ Route::middleware(['auth'])->group(function(){
 
 
         Route::get('/boarding_house',[BoardingHouseController::class,'index'])->name('boarding_house');
+    });
+
+
+    Route::middleware(['checkUserType:landlord'])->group(function(){
+        Route::get('/landlord',[LandlordDashboard::class,'index'])->name('landlord_dashboard');
+
     });
     
 });

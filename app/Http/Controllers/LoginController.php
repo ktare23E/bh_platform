@@ -26,6 +26,8 @@ class LoginController extends Controller
         if(Auth::attempt($validatedRequest)){
             if(Auth::user()->user_type === 'admin'){
                 return redirect()->route('admin_dashboard');
+            }else if (Auth::user()->user_type === 'landlord'){
+                return redirect()->route('landlord_dashboard');
             }
         }
     }
@@ -38,6 +40,10 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login'); // or wherever you want to redirect after logout
+
+    }
+
+    public function registerStore(Request $request){
 
     }
 }

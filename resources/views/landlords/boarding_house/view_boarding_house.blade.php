@@ -27,7 +27,7 @@
                             <tr>
                                 <td>{{$requirement_submission->requirement->name}}</td>
                                 <td>{{$requirement_submission->readable_date}}</td>
-                                <td>{{$requirement_submission->status}}</td>
+                                <td class="{{$requirement_submission->status === 'approved' ? 'text-green-500' : ($requirement_submission->status === 'rejected' ? 'text-red-500' : 'text-orange-400')}}">{{$requirement_submission->status}}</td>
                                 <td>
                                     <button  class="open-edit-modal py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm"
                                         data-requirment="{{$requirement_submission->requirement->name}}"

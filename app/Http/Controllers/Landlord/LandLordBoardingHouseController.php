@@ -63,4 +63,12 @@ class LandLordBoardingHouseController extends Controller
             'message' => 'success'
         ]);
     }
+
+    public function viewBoardingHouse(BoardingHouse $boarding_house){
+        $submissions = RequirementSubmission::with('requirement')->where('boarding_house_id',$boarding_house->id)->get();
+        return view('landlords.boarding_house.view_boarding_house',[
+            'boarding_house' => $boarding_house,
+            'submissions' => $submissions
+        ]);
+    }
 }

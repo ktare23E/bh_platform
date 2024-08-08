@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class RequirementSubmission extends Model
 {
@@ -16,5 +17,9 @@ class RequirementSubmission extends Model
 
     public function requirement(){
         return $this->belongsTo(Requirement::class);
+    }
+
+    public function getReadableDateAttribute(){
+        return Carbon::parse($this->date)->format('F j, Y');
     }
 }

@@ -5,7 +5,7 @@
         <div class="p-4 xl:ml-80">
             <div id="about" class="relative bg-white overflow-hidden mt-16">
                 <div class="max-w-7xl mx-auto">
-                    <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+                    <div class="hide-this relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
                         <svg class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
                             fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                             <polygon points="50,0 100,0 50,100 0,100"></polygon>
@@ -36,14 +36,14 @@
                                         <p class="font-semibold text-center">Boarding House Name:</p>
                                         <p class="text-center">{{ $boarding_house->name }}</p>
                                     </div>
-                                    <div class="flex flex-col items-center">
-                                        <p class="font-semibold text-center">Address:</p>
-                                        <p class="text-center">{{ $boarding_house->address }}</p>
-                                    </div>
                                     <!-- Address -->
                                     <div class="flex flex-col items-center">
                                         <p class="font-semibold text-center">Status:</p>
                                         <p class="text-center capitalize {{$boarding_house->status === 'active' ? 'text-green-500':'text-orange-500'}}">{{ $boarding_house->status }}</p>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <p class="font-semibold text-center">Address:</p>
+                                        <p class="text-center">{{ $boarding_house->address }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -59,9 +59,8 @@
                 <table id="myTable" class="display">
                     <thead>
                         <tr>
-                            <th>Owner</th>
-                            <th>Name</th>
-                            <th>Address</th>
+                            <th>Requirement</th>
+                            <th>Date Submitted</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -69,11 +68,14 @@
                     <tbody>
                         @foreach ($requirement_submissions as $requirement_submission)
                             <tr>
-                                <td>{{$boarding_house->user->first_name.' '.$boarding_house->user->last_name}}</td>
-                                <td>{{$boarding_house->name}}</td>
-                                <td>{{$boarding_house->address}}</td>
-                                <td>{{$boarding_house->status}}</td>
-                                <td><a href="" class="py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm">view</a></td>
+                                <td>{{$requirement_submission->requirement->name}}</td>
+                                <td>{{$requirement_submission->readable_date}}</td>
+                                <td>{{$requirement_submission->status}}</td>
+                                <td>
+                                    <button  class="open-edit-modal py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm"
+                                        data-requirment="{{$requirement_submission->requirement->name}}"
+                                        data-file="{{$requirement_submission->file_path}}">view</button>
+                                </td>                            
                             </tr>
                         @endforeach
                     </tbody>
@@ -81,4 +83,37 @@
             </div>
         </div>
     </div>
+    @include('components.modals.view_requirement_submission')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modalBackground = document.getElementById('edit-modal-background');
+            const modalContent = document.getElementById('edit-modal-content');
+            const openModalButton = document.querySelectorAll('.open-edit-modal'); // Assuming you have a button to open the modal
+            const closeModalButton = document.getElementById('close-edit-modal');
+
+            openModalButton.forEach((button)=>{
+                button.addEventListener('click', () => {
+                    modalBackground.classList.remove('opacity-0', 'pointer-events-none');
+                    modalBackground.classList.add('opacity-100', 'pointer-events-auto');
+                    modalContent.classList.remove('scale-90');
+                    modalContent.classList.add('scale-100');
+
+                    let requirement = button.getAttribute('data-requirment');
+                    let file = button.getAttribute('data-file');
+                    let filePath = "{{asset('storage')}}/"+file;
+                    
+                    $('.requirement-name').html(requirement);
+                    $('.requirement_image').attr('src', filePath);
+                })
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                modalBackground.classList.add('opacity-0', 'pointer-events-none');
+                modalBackground.classList.remove('opacity-100', 'pointer-events-auto');
+                modalContent.classList.add('scale-90');
+                modalContent.classList.remove('scale-100');
+            });
+        });
+    </script>
 </x-layout>

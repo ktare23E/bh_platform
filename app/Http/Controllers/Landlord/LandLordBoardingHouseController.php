@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Landlord;
 
 use App\Http\Controllers\Controller;
-use App\Models\BoardingHouses;
-use App\Models\Requirements;
+use App\Models\BoardingHouse;
+use App\Models\Requirement;
 use Illuminate\Http\Request;
 
 class LandLordBoardingHouseController extends Controller
@@ -12,8 +12,8 @@ class LandLordBoardingHouseController extends Controller
     //
 
     public function index(){
-        $boarding_houses = BoardingHouses::with('user')->where('user_id',auth()->user()->id)->get();
-        $requirements = Requirements::where('status','active')->get();
+        $boarding_houses = BoardingHouse::with('user')->where('user_id',auth()->user()->id)->get();
+        $requirements = Requirement::where('status','active')->get();
 
         return view('landlords.boarding_house.index',[
             'boarding_houses' => $boarding_houses,
@@ -30,7 +30,7 @@ class LandLordBoardingHouseController extends Controller
 
         $user = auth()->user();
 
-        BoardingHouses::create([
+        BoardingHouse::create([
             'name' => $request->name,
             'description' => $request->description,
             'address' => $request->address,

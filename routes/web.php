@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function(){
 
 
         Route::get('/boarding_house',[BoardingHouseController::class,'index'])->name('boarding_house');
+        Route::get('/view_boarding_house/{boarding_house}',[BoardingHouseController::class,'view'])->name('view_boarding_house');
     });
 
 

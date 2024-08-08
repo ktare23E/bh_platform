@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Requirements;
-
+use App\Models\Requirement;
 class RequirementController extends Controller
 {
     //
 
     public function index(){
-        $requirements = Requirements::all();
+        $requirements = Requirement::all();
 
         return view('admin.requirements.index',[
             'requirements' => $requirements
@@ -24,7 +23,7 @@ class RequirementController extends Controller
             'description' => 'required',
         ]);
 
-        Requirements::create([
+        Requirement::create([
             'name' => $request->name,
             'description' => $request->description,
             'status' => 'active'
@@ -40,7 +39,7 @@ class RequirementController extends Controller
             'status' => 'required'
         ]);
 
-        $requirement = Requirements::findOrFail($request->id);
+        $requirement = Requirement::findOrFail($request->id);
         $requirement->update([
             'name' => $request->name,
             'description' => $request->description,

@@ -21,7 +21,7 @@ class BoardingHouseController extends Controller
     }
 
     public function view(BoardingHouse $boarding_house){
-        $requirement_submissions = RequirementSubmission::with('requirement')->where('boarding_house_id',$boarding_house->id)->get();
+        $requirement_submissions = RequirementSubmission::with('requirement')->where('boarding_house_id',$boarding_house->id)->whereIn('status',['pending','rejected'])->get();
         // return $requirement_submissions;
         return view('admin.boarding_house.view',[
             'boarding_house' => $boarding_house,
@@ -34,6 +34,19 @@ class BoardingHouseController extends Controller
         $requirement_submission = RequirementSubmission::findOrFail($request->requirement_submission_id);
         $requirement_submission->status = 'approved';
         $requirement_submission->save();
+
+        $boarding_house = BoardingHouse::findOrFail($requirement_submission->boarding_house_id);
+
+        $unApprovedRequirementSubmissions = RequirementSubmission::where('boarding_house_id',$boarding_house->id)->whereNotIn('status',['approved'])->count();
+
+        if($unApprovedRequirementSubmissions == 0){
+            $boarding_house->status = 'active';
+            $boarding_house->save();
+
+            return response()->json([
+                'message' => 'house'
+            ]);
+        }
 
         return response()->json([
             'message' => 'success'

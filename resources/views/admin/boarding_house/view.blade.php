@@ -70,7 +70,7 @@
                             <tr>
                                 <td>{{$requirement_submission->requirement->name}}</td>
                                 <td>{{$requirement_submission->readable_date}}</td>
-                                <td>{{$requirement_submission->status}}</td>
+                                <td class="{{$requirement_submission->status === 'approved' ? 'text-green-500' : ($requirement_submission->status === 'rejected' ? 'text-red-500' : 'text-orange-400')}}">{{$requirement_submission->status}}</td>
                                 <td>
                                     <button  class="open-edit-modal py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm"
                                         data-requirment="{{$requirement_submission->requirement->name}}"
@@ -143,6 +143,19 @@
                             }
                         }).then(function(){
                             location.reload();
+                        });
+                    }else if (response.message === 'house'){
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Approved Requirement",
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
+                        }).then(function(){
+                            location.href = "{{route('boarding_house')}}";
                         });
                     }
                 }

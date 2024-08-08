@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Landlord\LandlordDashboard;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Landlord\LandLordBoardingHouseController;
+use App\Http\Controllers\Landlord\LandLordReport;
 
 Route::get('/', function () {
     return view('index');
@@ -56,6 +58,9 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/landlord',[LandlordDashboard::class,'index'])->name('landlord_dashboard');
         Route::get('/landlord_profile',[LandlordDashboard::class,'profile'])->name('landlord_profile');
 
+        Route::get('/landlord_boarding_house',[LandLordBoardingHouseController::class,'index'])->name('landlord_boarding_house');
+        Route::post('/store_boarding_house',[LandLordBoardingHouseController::class,'store'])->name('store_boarding_house');
+        Route::get('/reports',[LandLordReport::class,'index'])->name('reports');
     });
     
 });

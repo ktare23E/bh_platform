@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('address');
-            $table->string('barangay');
-            $table->string('city');
-            $table->string('province');
-            $table->string('postal_code');
-            $table->decimal('latitude', 10, 7);
-            $table->decimal('longitude', 10, 7);
+            $table->string('barangay')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
             $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->timestamps();
         });

@@ -74,6 +74,50 @@
                         </li>
                         
                     </ul>
+                @else
+                    <ul class="mb-4 flex flex-col gap-1">
+                        <li>
+                            <x-nav-link :href="route('landlord_dashboard')" :active="request()->routeIs('landlord_dashboard')">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                aria-hidden="true" class="w-5 h-5 text-inherit">
+                                    <path
+                                        d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z">
+                                    </path>
+                                    <path
+                                        d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z">
+                                    </path>
+                                </svg>
+                                <p
+                                    class="block antialiased  text-base leading-relaxed text-inherit font-medium capitalize">
+                                    dashboard
+                                </p>
+                            </x-nav-link>
+                        </li>
+                        <li>
+                            <x-nav-link :href="route('landlord_boarding_house')" :active="request()->routeIs('landlord_boarding_house')">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                                    <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                                </svg>
+                                <p
+                                    class="block antialiased  text-base leading-relaxed text-inherit font-medium capitalize">
+                                    boarding house
+                                </p>
+                            </x-nav-link>
+                        </li>
+                        <li>
+                            <x-nav-link :href="route('reports')" :active="request()->routeIs('reports')">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path fill-rule="evenodd" d="M10.5 3A1.501 1.501 0 0 0 9 4.5h6A1.5 1.5 0 0 0 13.5 3h-3Zm-2.693.178A3 3 0 0 1 10.5 1.5h3a3 3 0 0 1 2.694 1.678c.497.042.992.092 1.486.15 1.497.173 2.57 1.46 2.57 2.929V19.5a3 3 0 0 1-3 3H6.75a3 3 0 0 1-3-3V6.257c0-1.47 1.073-2.756 2.57-2.93.493-.057.989-.107 1.487-.15Z" clip-rule="evenodd" />
+                                </svg>
+                                <p
+                                    class="block antialiased  text-base leading-relaxed text-inherit font-medium capitalize">
+                                    report
+                                </p>
+                            </x-nav-link>
+                        </li>
+                        
+                    </ul>
                 @endif
                 
                 <ul class="mb-4 flex flex-col gap-1">

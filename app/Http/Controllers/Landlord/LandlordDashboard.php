@@ -11,4 +11,11 @@ class LandlordDashboard extends Controller
     public function index(){
         return view('landlords.index');
     }
+
+    public function profile(){
+
+        return view('landlords.profile',[
+            'user' => auth()->user()
+        ]);
+    }
 }

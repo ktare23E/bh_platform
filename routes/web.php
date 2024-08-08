@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::middleware(['checkUserType:landlord'])->group(function(){
         Route::get('/landlord',[LandlordDashboard::class,'index'])->name('landlord_dashboard');
+        Route::get('/landlord_profile',[LandlordDashboard::class,'profile'])->name('landlord_profile');
 
     });
     

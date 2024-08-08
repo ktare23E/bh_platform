@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-
+use App\Models\User;
 class LoginController extends Controller
 {
     //
@@ -44,6 +44,24 @@ class LoginController extends Controller
     }
 
     public function registerStore(Request $request){
+        $validatedData = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'user_type' => 'required'
+        ]);
 
+        
+
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
+        $user = User::create($validatedData);
+
+        Auth::login($user);
+
+        if(auth()->user()->user_type === 'landlord'){
+            return redirect()->route('landlord_dashboard');
+        }
     }
 }

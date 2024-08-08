@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Landlord;
 use App\Http\Controllers\Controller;
 use App\Models\BoardingHouse;
 use App\Models\Requirement;
+use App\Models\RequirementSubmission;
 use Illuminate\Http\Request;
 
 class LandLordBoardingHouseController extends Controller
@@ -22,21 +23,41 @@ class LandLordBoardingHouseController extends Controller
     }
 
     public function store(Request $request){
-        $request->validate([
+
+        $validatedData = $request->validate([
             'name' => 'required',
             'description' => 'required',
             'address' => 'required',
+            'requirement_ids' => 'array',
+            'requirements.*' => 'file|mimes:jpg,jpeg,png'
         ]);
 
         $user = auth()->user();
 
-        BoardingHouse::create([
+        $boardingHouse = BoardingHouse::create([
             'name' => $request->name,
             'description' => $request->description,
             'address' => $request->address,
             'status' => 'inactive',
             'user_id' => $user->id
         ]);
+
+        if($request->hasFile(('requirements'))){
+            foreach($request->file('requirements') as $index => $file){
+                $requirementId = $request->requirement_ids[$index];
+
+                $filePath = $file->store('requirement_submissions','public');
+
+                //create requirement submissions
+                RequirementSubmission::create([
+                    'requirement_id' => $requirementId,
+                    'boarding_house_id' => $boardingHouse->id,
+                    'file_path' => $filePath,
+                    'status' => 'pending',
+                    'submitted_at' => now()
+                ]);
+            }
+        }
 
         return response()->json([
             'message' => 'success'

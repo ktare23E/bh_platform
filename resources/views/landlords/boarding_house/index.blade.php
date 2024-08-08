@@ -42,24 +42,22 @@
 
     <script>
         $('#create_boarding_house').click(() => {
-            let name = $('#name').val();
-            let description = $('#description').val();
-            let address = $('#address').val();
+            let formData = new FormData($('#boarding-house-form')[0]);
+
+            console.log(formData);
+            
 
             $.ajax({
-                url : "{{ route('store_boarding_house') }}",
-                type : "POST",
-                data : {
-                    name : name,
-                    description : description,
-                    address : address,
-                    _token : "{{ csrf_token() }}"
-                },
-                success : (response) => {
-                    if(response.message === 'success'){
+                url: "{{ route('store_boarding_house') }}",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.message === 'success') {
                         Swal.fire({
                             title: "Success!",
-                            text: "Sucessfully Created Boarding House",
+                            text: "Successfully Created Boarding House",
                             icon: "success",
                             confirmButtonText: 'OK',
                             buttonsStyling: false,
@@ -70,6 +68,9 @@
                             location.reload();
                         });
                     }
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
                 }
             });
         });

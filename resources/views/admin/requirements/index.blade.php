@@ -102,11 +102,21 @@
             });
 
             closeModalButton.addEventListener('click', () => {
+                closeModal();
+            });
+
+            modalBackground.addEventListener('click', (event) => {
+                if (event.target === modalBackground) {
+                    closeModal();
+                }
+            });
+
+            function closeModal() {
                 modalBackground.classList.add('opacity-0', 'pointer-events-none');
                 modalBackground.classList.remove('opacity-100', 'pointer-events-auto');
                 modalContent.classList.add('scale-90');
                 modalContent.classList.remove('scale-100');
-            });
+            }
         });
 
         $('#update_requirement').click(() => {

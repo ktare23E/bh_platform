@@ -30,8 +30,47 @@
             </div>
         </div>
     </div>
-    @include('components.modals.aminities')
+    @include('components.modals.aminities_modal')
     <script>
-        
+        $('#create_aminities').click(() => {
+            let name = $('#name').val();
+
+            $.ajax({
+                url : "{{ route('store_amenities') }}",
+                type : "POST",
+                data : {
+                    name : name,
+                    _token : "{{ csrf_token() }}"
+                },
+                success : (response) => {
+                    if (response.message === 'success') {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Successfully Created Amenities",
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
+                        }).then(function(){
+                            location.reload();
+                        });
+                    }
+                },
+                error : (xhr) => {
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+                        let errorList = '';
+
+                        $.each(errors, function(key, value) {
+                            errorList += '<li>' + value[0] + '</li>';
+                        });
+
+                        $('#error-messages').html('<ul>' + errorList + '</ul>').show();
+                    }
+                }
+            });
+        });
     </script>
 </x-layout>

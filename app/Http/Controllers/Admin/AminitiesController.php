@@ -16,4 +16,16 @@ class AminitiesController extends Controller
             'amenities' => $amenities
         ]);
     }
+
+    public function store(Request $request){
+        $validatedData = $request->validate([
+            'name' => 'required'
+        ]);
+
+        Amenities::create($validatedData);
+
+        return response()->json([
+            'message' => 'success'
+        ]);
+    }
 }

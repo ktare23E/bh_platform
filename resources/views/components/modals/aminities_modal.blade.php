@@ -2,6 +2,7 @@
     <!-- Modal Content -->
     <div id="modal-content" class="bg-white p-6 rounded-lg shadow-lg w-[20%] transform scale-90 transition-transform duration-300">
         <h2 class="text-xl font-semibold mb-4">Create Aminities</h2>
+        <div id="error-messages" class="text-red-500 mb-4" style="display:none;"></div>
         <form>
             <!-- Form Fields -->
             <div class="mb-4">
@@ -11,7 +12,7 @@
             <!-- Modal Actions -->
             <div class="flex justify-end">
                 <button type="button" id="close-modal" class="mr-2 px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400">Cancel</button>
-                <button type="button" id="create_requirement" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Submit</button>
+                <button type="button" id="create_aminities" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Submit</button>
             </div>
         </form>
     </div>

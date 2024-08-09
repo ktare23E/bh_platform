@@ -48,7 +48,7 @@
                 
                 // Validation logic
                 let valid = true;
-                
+
                 $('.requirement-file-input').each(function() {
                     if ($(this).val() === '') {
                         valid = false;
@@ -88,7 +88,16 @@
                         }
                     },
                     error: function(xhr) {
-                        console.log(xhr.responseText);
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+                            let errorList = '';
+
+                            $.each(errors, function(key, value) {
+                                errorList += '<li>' + value[0] + '</li>';
+                            });
+
+                            $('#error-messages').html('<ul>' + errorList + '</ul>').show();
+                        }
                     }
                 });
             });

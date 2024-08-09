@@ -23,6 +23,7 @@ class LandLordBoardingHouseController extends Controller
     }
 
     public function store(Request $request){
+        
 
         $validatedData = $request->validate([
             'name' => 'required',
@@ -31,6 +32,7 @@ class LandLordBoardingHouseController extends Controller
             'requirement_ids' => 'array',
             'requirements.*' => 'required|file|mimes:jpg,jpeg,png'
         ]);
+
 
         $user = auth()->user();
 

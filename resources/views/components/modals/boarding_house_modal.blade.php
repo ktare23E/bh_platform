@@ -3,15 +3,15 @@
     <!-- Modal Content -->
     <div id="modal-content" class="bg-white p-6 rounded-lg shadow-lg w-[30%] transform scale-90 transition-transform duration-300">
         <h2 class="text-xl font-semibold mb-4">Create Boarding House</h2>
+        <!-- Error Messages -->
+        <div id="error-messages" class="text-red-500 mb-4" style="display:none;"></div>
+
         <form id="boarding-house-form" action="{{route('store_boarding_house')}}" method="POST">
             @csrf
             <!-- Form Fields -->
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Boarding House Name</label>
                 <input type="text" id="name" name="name" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter your name">
-                @error('name')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Description</label>
@@ -19,7 +19,7 @@
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Address</label>
-                <input type="text" id="address" name="address" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Ozamis Street" required>
+                <input type="text" id="address" name="address" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Ozamis Street" >
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-md font-bold text-gray-700">Requirements:</label>

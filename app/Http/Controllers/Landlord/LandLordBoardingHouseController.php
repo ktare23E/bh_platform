@@ -73,4 +73,11 @@ class LandLordBoardingHouseController extends Controller
             'submissions' => $submissions
         ]);
     }
+
+    public function images(BoardingHouse $boarding_house){
+        return view('landlords.boarding_house.image.index',[
+            'images' => $boarding_house->images,
+            'boarding_house' => $boarding_house
+        ]);
+    }
 }

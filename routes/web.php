@@ -64,6 +64,8 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/landlord_boarding_house',[LandLordBoardingHouseController::class,'index'])->name('landlord_boarding_house');
         Route::post('/store_boarding_house',[LandLordBoardingHouseController::class,'store'])->name('store_boarding_house');
 
+        Route::get('/boarding_house_images/{boarding_house}',[LandLordBoardingHouseController::class,'images'])->name('boarding_house_images');
+
         Route::get('/boarding_house_requirement_submissions/{boarding_house}',[LandLordBoardingHouseController::class,'viewBoardingHouse'])->name('boarding_house_requirement_submissions');
 
         Route::get('/reports',[LandLordReport::class,'index'])->name('reports');

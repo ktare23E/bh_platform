@@ -30,4 +30,8 @@ class BoardingHouse extends Model
     public function requirement_submissions(){
         return $this->hasMany(RequirementSubmission::class);
     }
+
+    public function images(){
+        return $this->hasMany(BoardingHouseImage::class);
+    }
 }

@@ -13,30 +13,7 @@
                 </button>
             </div>
             <div class="mt-4 bg-white w-full p-[2rem] rounded-sm shadow-2xl transition-all">
-                <table id="myTable" class="display">
-                    <thead>
-                        <tr>
-                            <th>Requirement</th>
-                            <th>Date Submitted</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($submissions as $requirement_submission)
-                            <tr>
-                                <td>{{$requirement_submission->requirement->name}}</td>
-                                <td>{{$requirement_submission->readable_date}}</td>
-                                <td class="{{$requirement_submission->status === 'approved' ? 'text-green-500' : ($requirement_submission->status === 'rejected' ? 'text-red-500' : 'text-orange-400')}}">{{$requirement_submission->status}}</td>
-                                <td>
-                                    <button  class="open-edit-modal py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm"
-                                        data-requirment="{{$requirement_submission->requirement->name}}"
-                                        data-file="{{$requirement_submission->file_path}}">view</button>
-                                </td>                            
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                
             </div>
         </div>
     </div>

@@ -34,4 +34,12 @@ class BoardingHouse extends Model
     public function images(){
         return $this->hasMany(BoardingHouseImage::class);
     }
+    
+    public function amenities(){
+        return $this->belongsToMany(Amenities::class);
+    }
+
+    public function rules(){
+        return $this->hasMany(BoardingHouseRules::class);
+    }
 }

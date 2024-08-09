@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landlord\LandLordBoardingHouseController;
 use App\Http\Controllers\Landlord\LandLordReport;
+use App\Http\Controllers\Admin\AminitiesController;
 
 Route::get('/', function () {
     return view('index');
@@ -46,6 +47,7 @@ Route::middleware(['auth'])->group(function(){
 
 
         Route::get('/requirements',[RequirementController::class,'index'])->name('requirements');
+        Route::get('/amenities',[AminitiesController::class,'index'])->name('amenities');
         Route::post('/store_requirement',[RequirementController::class,'store'])->name('store_requirement');
         Route::post('/update_requirement',[RequirementController::class,'update'])->name('update_requirement');
 

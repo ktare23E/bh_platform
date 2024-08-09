@@ -93,7 +93,7 @@
             const openModalButton = document.querySelectorAll('.open-edit-modal'); // Assuming you have a button to open the modal
             const closeModalButton = document.getElementById('close-edit-modal');
 
-            openModalButton.forEach((button)=>{
+            openModalButton.forEach((button) => {
                 button.addEventListener('click', () => {
                     modalBackground.classList.remove('opacity-0', 'pointer-events-none');
                     modalBackground.classList.add('opacity-100', 'pointer-events-auto');
@@ -104,22 +104,32 @@
                     let file = button.getAttribute('data-file');
                     let requirement_submission_id = button.getAttribute('data-id');
 
-                    let filePath = "{{asset('storage')}}/"+file;
-                    
+                    let filePath = "{{asset('storage')}}/" + file;
+
                     $('.requirement-name').html(requirement);
                     $('.requirement_image').attr('src', filePath);
                     $('#requirement_submission_id').val(requirement_submission_id);
-                })
+                });
             });
 
             closeModalButton.addEventListener('click', () => {
+                closeModal();
+            });
+
+            modalBackground.addEventListener('click', (event) => {
+                if (event.target === modalBackground) {
+                    closeModal();
+                }
+            });
+
+            function closeModal() {
                 modalBackground.classList.add('opacity-0', 'pointer-events-none');
                 modalBackground.classList.remove('opacity-100', 'pointer-events-auto');
                 modalContent.classList.add('scale-90');
                 modalContent.classList.remove('scale-100');
-            });
+            }
         });
-
+                
         $('#approve').click(() => {
             let requirement_submission_id = $('#requirement_submission_id').val();
 

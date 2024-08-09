@@ -4,14 +4,6 @@
         @include('components.landlord_sidebar')
         <div class="p-4 xl:ml-80">
             <h1 class="text-2xl font-bold mt-12">Requirement Submission</h1>
-            <div class="action_buttons mt-12 w-full flex justify-end">
-                <button id="open-modal" class="py-1 px-2 text-md bg-[#E61E50] text-white rounded-sm flex gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                        <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
-                    </svg>
-                    Submit Requirement
-                </button>
-            </div>
             <div class="mt-4 bg-white w-full p-[2rem] rounded-sm shadow-2xl transition-all">
                 <table id="myTable" class="display">
                     <thead>
@@ -40,8 +32,50 @@
             </div>
         </div>
     </div>
+    @include('components.modals.view_requirement_submission')
 
     <script>
-        
+        document.addEventListener('DOMContentLoaded', () => {
+            const modalBackground = document.getElementById('edit-modal-background');
+            const modalContent = document.getElementById('edit-modal-content');
+            const openModalButton = document.querySelectorAll('.open-edit-modal'); // Assuming you have a button to open the modal
+            const closeModalButton = document.getElementById('close-edit-modal');
+
+            openModalButton.forEach((button) => {
+                button.addEventListener('click', () => {
+                    modalBackground.classList.remove('opacity-0', 'pointer-events-none');
+                    modalBackground.classList.add('opacity-100', 'pointer-events-auto');
+                    modalContent.classList.remove('scale-90');
+                    modalContent.classList.add('scale-100');
+
+                    let requirement = button.getAttribute('data-requirment');
+                    let file = button.getAttribute('data-file');
+                    let requirement_submission_id = button.getAttribute('data-id');
+
+                    let filePath = "{{asset('storage')}}/" + file;
+
+                    $('.requirement-name').html(requirement);
+                    $('.requirement_image').attr('src', filePath);
+                    $('#requirement_submission_id').val(requirement_submission_id);
+                });
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                closeModal();
+            });
+
+            modalBackground.addEventListener('click', (event) => {
+                if (event.target === modalBackground) {
+                    closeModal();
+                }
+            });
+
+            function closeModal() {
+                modalBackground.classList.add('opacity-0', 'pointer-events-none');
+                modalBackground.classList.remove('opacity-100', 'pointer-events-auto');
+                modalContent.classList.add('scale-90');
+                modalContent.classList.remove('scale-100');
+            }
+        });
     </script>
 </x-layout>

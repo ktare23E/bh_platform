@@ -80,4 +80,25 @@ class LandLordBoardingHouseController extends Controller
             'boarding_house' => $boarding_house
         ]);
     }
+
+    public function update(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'address' => 'required',
+            'boarding_house_id' => 'required|exists:boarding_houses,id'
+        ]);
+
+        $boardingHouse = BoardingHouse::findOrFail($request->boarding_house_id);
+
+        $boardingHouse->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'address' => $request->address
+        ]);
+
+        return response()->json([
+            'message' => 'success'
+        ]);
+    }
 }

@@ -63,6 +63,7 @@ Route::middleware(['auth'])->group(function(){
 
         Route::get('/landlord_boarding_house',[LandLordBoardingHouseController::class,'index'])->name('landlord_boarding_house');
         Route::post('/store_boarding_house',[LandLordBoardingHouseController::class,'store'])->name('store_boarding_house');
+        Route::post('/update_boarding_house',[LandLordBoardingHouseController::class,'update'])->name('update_boarding_house');
 
         Route::get('/boarding_house_images/{boarding_house}',[LandLordBoardingHouseController::class,'images'])->name('boarding_house_images');
 

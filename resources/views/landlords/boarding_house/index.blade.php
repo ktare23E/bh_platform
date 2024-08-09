@@ -30,7 +30,14 @@
                                 <td>{{$boarding_house->name}}</td>
                                 <td>{{$boarding_house->address}}</td>
                                 <td>{{$boarding_house->status}}</td>
-                                <td><a href="{{route('boarding_house_requirement_submissions',$boarding_house->id)}}" class="py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm">view</a></td>
+                                <td>
+                                    <a href="{{route('boarding_house_requirement_submissions',$boarding_house->id)}}" class="py-1 px-2 bg-black text-white rounded-sm text-sm">view</a>
+                                    <button class="open-edit-modal py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm"
+                                        data-id="{{$boarding_house->id}}"
+                                        data-name="{{$boarding_house->name}}"
+                                        data-description="{{$boarding_house->description}}"
+                                        data-address="{{$boarding_house->address}}">edit </button>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -103,5 +110,83 @@
             });
         });
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const modalBackground = document.getElementById('edit-modal-background');
+            const modalContent = document.getElementById('edit-modal-content');
+            const openModalButton = document.querySelectorAll('.open-edit-modal'); // Assuming you have a button to open the modal
+            const closeModalButton = document.getElementById('close-edit-modal');
+
+            openModalButton.forEach((button)=>{
+                button.addEventListener('click', () => {
+                    modalBackground.classList.remove('opacity-0', 'pointer-events-none');
+                    modalBackground.classList.add('opacity-100', 'pointer-events-auto');
+                    modalContent.classList.remove('scale-90');
+                    modalContent.classList.add('scale-100');
+
+                    let name = button.getAttribute('data-name');
+                    let description = button.getAttribute('data-description');
+                    let address = button.getAttribute('data-address');
+
+                    let id = button.getAttribute('data-id');
+
+                    $('#edit_name').val(name);
+                    $('#edit_description').val(description);
+                    $('#edit_address').val(address);
+                    $('#edit_id').val(id);
+                })
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                closeModal();
+            });
+
+            modalBackground.addEventListener('click', (event) => {
+                if (event.target === modalBackground) {
+                    closeModal();
+                }
+            });
+
+            function closeModal() {
+                modalBackground.classList.add('opacity-0', 'pointer-events-none');
+                modalBackground.classList.remove('opacity-100', 'pointer-events-auto');
+                modalContent.classList.add('scale-90');
+                modalContent.classList.remove('scale-100');
+            }
+        });
+
+        $('#update_boarding_house').click(() => {
+            let name = $('#edit_name').val();
+            let description= $('#edit_description').val();
+            let address = $('#edit_address').val();
+            let boarding_house_id = $('#edit_id').val();
+
+            $.ajax({
+                url : "{{ route('update_boarding_house') }}",
+                type : "POST",
+                data : {
+                    name : name,
+                    description : description,
+                    address : address,
+                    boarding_house_id : boarding_house_id,
+                    _token : "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                        if (response.message === 'success') {
+                            Swal.fire({
+                                title: "Success!",
+                                text: "Successfully Updated Boarding House",
+                                icon: "success",
+                                confirmButtonText: 'OK',
+                                buttonsStyling: false,
+                                customClass: {
+                                    confirmButton: 'custom-confirm-button'
+                                }
+                            }).then(function(){
+                                location.reload();
+                            });
+                        }
+                    },
+            });
+        });
     </script>
 </x-layout>

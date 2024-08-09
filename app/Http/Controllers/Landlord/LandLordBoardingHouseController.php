@@ -29,7 +29,7 @@ class LandLordBoardingHouseController extends Controller
             'description' => 'required',
             'address' => 'required',
             'requirement_ids' => 'array',
-            'requirements.*' => 'file|mimes:jpg,jpeg,png'
+            'requirements.*' => 'required|file|mimes:jpg,jpeg,png'
         ]);
 
         $user = auth()->user();

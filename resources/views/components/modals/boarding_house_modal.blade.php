@@ -3,12 +3,15 @@
     <!-- Modal Content -->
     <div id="modal-content" class="bg-white p-6 rounded-lg shadow-lg w-[30%] transform scale-90 transition-transform duration-300">
         <h2 class="text-xl font-semibold mb-4">Create Boarding House</h2>
-        <form id="boarding-house-form" method="POST">
+        <form id="boarding-house-form" action="{{route('store_boarding_house')}}" method="POST">
             @csrf
             <!-- Form Fields -->
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Boarding House Name</label>
                 <input type="text" id="name" name="name" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter your name">
+                @error('name')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Description</label>
@@ -16,7 +19,7 @@
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Address</label>
-                <input type="text" id="address" name="address" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Ozamis Street">
+                <input type="text" id="address" name="address" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Ozamis Street" required>
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-md font-bold text-gray-700">Requirements:</label>
@@ -24,7 +27,7 @@
                     <div class="flex items-center gap-2">
                         <p>{{$requirement->name}}</p>
                         <input type="hidden" name="requirement_ids[]" value="{{$requirement->id}}">
-                        <input type="file" name="requirements[]" class="requirement-file-input">
+                        <input type="file" name="requirements[]" class="requirement-file-input" required>
                     </div>
                 @endforeach
             </div>

@@ -41,38 +41,58 @@
     @include('components.modals.boarding_house_modal')
 
     <script>
-        $('#create_boarding_house').click(() => {
-            let formData = new FormData($('#boarding-house-form')[0]);
-
-            console.log(formData);
-            
-
-            $.ajax({
-                url: "{{ route('store_boarding_house') }}",
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.message === 'success') {
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Successfully Created Boarding House",
-                            icon: "success",
-                            confirmButtonText: 'OK',
-                            buttonsStyling: false,
-                            customClass: {
-                                confirmButton: 'custom-confirm-button'
-                            }
-                        }).then(function(){
-                            location.reload();
-                        });
+        $(document).ready(function() {
+            $('#create_boarding_house').click(function(e) {
+                // Prevent default form submission
+                e.preventDefault();
+                
+                // Validation logic
+                let valid = true;
+                
+                $('.requirement-file-input').each(function() {
+                    if ($(this).val() === '') {
+                        valid = false;
+                        alert('Please upload image for the necessary requirements');
+                        return false; // Break out of the loop
                     }
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText);
+                });
+
+                // If validation fails, stop the process
+                if (!valid) {
+                    return;
                 }
+
+                // Proceed with AJAX submission if validation is successful
+                let formData = new FormData($('#boarding-house-form')[0]);
+                
+                $.ajax({
+                    url: "{{ route('store_boarding_house') }}",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response.message === 'success') {
+                            Swal.fire({
+                                title: "Success!",
+                                text: "Successfully Created Boarding House",
+                                icon: "success",
+                                confirmButtonText: 'OK',
+                                buttonsStyling: false,
+                                customClass: {
+                                    confirmButton: 'custom-confirm-button'
+                                }
+                            }).then(function(){
+                                location.reload();
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
             });
         });
+
     </script>
 </x-layout>

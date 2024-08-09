@@ -21,7 +21,7 @@
                                 <td>{{$boarding_house->user->first_name.' '.$boarding_house->user->last_name}}</td>
                                 <td>{{$boarding_house->name}}</td>
                                 <td>{{$boarding_house->address}}</td>
-                                <td>{{$boarding_house->status}}</td>
+                                <td class="text-orange-400">{{$boarding_house->status}}</td>
                                 <td><a href="{{route('view_boarding_house',$boarding_house->id)}}" class="py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm">view</a></td>
                             </tr>
                         @endforeach
@@ -46,7 +46,7 @@
                                 <td>{{$boarding_house->user->first_name.' '.$boarding_house->user->last_name}}</td>
                                 <td>{{$boarding_house->name}}</td>
                                 <td>{{$boarding_house->address}}</td>
-                                <td>{{$boarding_house->status}}</td>
+                                <td class="text-green-500">{{$boarding_house->status}}</td>
                                 <td><a href="" class="py-1 px-2 bg-gradient-to-tr from-[#2D2426] to-blue-400 text-white rounded-sm text-sm">view</a></td>
                             </tr>
                         @endforeach
